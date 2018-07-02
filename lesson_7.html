@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UDEMY Vue Course - Lesson 7</title>
+    </head>
+    <body>
+        <div id="app">
+            <button v-on:click="getFullName">Evento (no invocado con ())</button>
+            <button v-on:click="getFullName()">Sin evento (invocado con ())</button>
+            <button v-on:click="getFullName('Guiomar', ['Almunia', 'Herranz'])">Con parámetros (I)</button>
+            <button v-on:click="getFullName('Tengri', ['Chiquitito'])">Con parámetros (II)</button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    nombre: 'Alejandro',
+                    apellidos: [
+                        'Almunia',
+                        'Herranz'
+                    ],
+                    edad: 39,
+                    direccion: 'C/ Repelón2 4ºderecha'
+                },
+                methods: {
+                    getFullName: function(first, last) {
+                        first = (first === undefined) ? this.nombre : first;
+                        last = (last === undefined) ? this.apellidos.join(' ') : last.join(' ');
+                        let fullName = first + ' ' + last;
+                        console.log(fullName);
+                        return fullName;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
