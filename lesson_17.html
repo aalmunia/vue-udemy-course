@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 14</title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-on:keyup="handleFirstInput($event)" placeholder="First variable..." />
+            <span><b>First Variable value: {{ propertyOne }}</b></span>
+            <br/>
+            <input type="text" v-on:keyup.ctrl.enter="handleSecondInput($event)" placeholder="Use Ctrl + Enter to set var value" />
+            <br/>
+            <!-- Muy importante: Recuerda que el binding, en campos de texto, se hace usando v-model
+            no v-bind como para otros tags. Averiguar por qué esto es así -->
+            <input type="text" v-model:value="propertyTwo" placeholder="This is binded to property two" />
+            <span><b>Output (second var): {{ propertyTwo }}</b></span>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    propertyOne: '',
+                    propertyTwo: '',
+                    propertyThree: ''
+                },
+                methods: {
+                    handleFirstInput: function(event) {
+                        this.propertyOne = event.srcElement.value;
+                    },
+                    handleSecondInput: function(event) {
+                        this.propertyOne = event.srcElement.value;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UDEMY Vue Course - Lesson 11</title>
+    </head>
+    <body>
+        <div id="app">
+            <div v-bind:title="firstName + ' - ' + lastName">Hover me!!!</div>        
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    firstName: 'Alejandro',
+                    lastName: 'Almunia Herranz'
+                }
+            });
+        </script>
+    </body>
+</html>

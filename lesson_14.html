@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 14</title>
+    </head>
+    <body>
+        <div id="app">
+            <div v-on:click="handleClick">
+                <button v-on:click="handleClick">Press this button</button>
+                <button v-on:click.stop="handleClick">This button does not propagate</button>
+            </div>
+            <hr/>
+            <div>
+                <button v-on:click.left="handleLeftClick">Left Click</button>
+                <button v-on:click.right="handleRightClick">Right Click</button>
+                <button v-on:click.middle="handleMiddleClick">Middle Click</button>                
+                <button v-on:click.once="handleClickOnce">Click only once</button>
+                <!-- Testear, esto debería funcionar con la tecla de Windows -->            
+                <button v-on:click.meta="handleMetaClick">Command / Windows Key + Click</button>
+                <button v-on:click.shift="handleShiftClick">Shift + Click</button>
+                <button v-on:click.ctrl="handleControlClick">Ctrl + Click</button>                
+            </div>
+            <hr/>
+            <div>
+                <input type="text" 
+                    v-on:keyup.enter="handleEnterPress" 
+                    placeholder="Write something..." />
+                <br/>
+                <!-- Intenta implementar esto: Solo inserta caracteres si está el CTRL pulsado a la vez
+                que las teclas que se quieran escribir en esta caja de texto. 
+                IMPORTANTE: El handler de gestión de keyup/keypress funciona en el caso del segundo
+                handler también -->
+                <input type="text" 
+                    v-on:keyup="handleNormalKeypress" 
+                    v-on:keypress.ctrl="handleCtrlPress"                
+                    placeholder="Use CTRL while typing" />
+            </div>
+            <hr/>
+            <div>
+                <a href="http://www.elmundo.es" target="_blank" v-on:click.prevent="handleLinkClick">El mundo newspaper</a>
+                <br/>
+                <a href="http://www.20minutos.es" target="_blank" v-on:click.prevent>20minutos.es</a>
+            </div>
+            <hr/>
+            <div>
+                <input type="text" v-on:keyup.enter.space="handleEnterOrSpace" placeholder="Press ENTER or SPACE" />
+                <br/>
+                <input type="text" v-on:keyup.shift.enter="handleShiftAndEnter" placeholder="Press SHIFT and ENTER" />
+                <br/>
+                <input type="text" v-on:keyup.shift.any="handleShiftAndAnyOther" placeholder="SHIFT and other" />
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods: {
+                    handleClick: function() {
+                        toastr.info('handleClick OK');
+                    },
+                    handleLeftClick() {
+                        toastr.info('Clicked left mouse button');
+                    },
+                    handleRightClick() {
+                        toastr.info('Clicked right mouse button');
+                    },
+                    handleMiddleClick() {
+                        toastr.info('Clicked middle mouse button');
+                    },
+                    handleControlClick: function() {
+                        toastr.info('Clicked while pressing CONTROL');
+                    },
+                    handleClickOnce: function() {
+                        toastr.warning('The first click has been received');
+                    },
+                    handleVClick: function() {
+                        toastr.info('Clicked while pressing V');
+                    },
+                    handleEnterPress: function() {
+                        toastr.warning('The ENTER key has been pressed');
+                    },
+                    handleNormalKeypress: function(event) {
+                        console.log(event);
+                        
+                        if(!event.ctrlKey) {
+                            event.srcElement.value = '';
+                        }
+                    },
+                    handleCtrlPress: function(event) {
+                        console.log(event);
+                        event.srcElement.value += event.key;
+                    },
+                    handleLinkClick: function() {
+                        // console.log(arguments);
+                        toastr.info('This link will get you nowhere, its default behavior has been prevented');
+                    },
+                    handleEnterOrSpace: function(event) {
+                        if(event.keyCode === 13) {
+                            toastr.warning('You pressed ENTER!');
+                        } else if(event.keyCode === 32) {
+                            toastr.warning('You pressed SPACE!');
+                        } else {
+                            toastr.error('This should not be seen....');
+                        }
+                        console.log(event);
+                    },
+                    handleShiftAndEnter: function(event) {
+                        console.log(event);
+                    },
+                    handleShiftAndAnyOther: function(event) {
+                        console.log(event);
+                    },
+                    handleShiftClick: function() {
+                        toastr.info('You pressed Shift + Click');
+                    },
+                    handleMetaClick: function() {
+                        toastr.info('You pressed Command / Windows + Click');
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

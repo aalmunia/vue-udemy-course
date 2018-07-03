@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UDEMY Vue Course - Lesson 10</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="exercise1">
+                <b>Title: </b>{{ movie.title }}
+                <br/>
+                <b>Year: </b>{{ movie.year }}
+            </div>
+            <hr/>
+            <div class="exercise2">
+                <b>Old or new? </b>{{ getMovieAge() }}
+            </div>
+            <hr/>
+            <div class="exercise3">
+                <div v-bind:title="movie.title">Hover over me !!!!</div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    movie: {
+                        title: 'Monty Python and the holy grail (vik !! ni !!)',
+                        year: 1102
+                    }
+                },
+                methods: {
+                    getMovieAge: function() {
+                        if(this.movie.year < 2000) {
+                            return 'OLDIE (but goldie)'
+                        } else {
+                            return 'NEW (and suckier)'
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
