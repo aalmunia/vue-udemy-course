@@ -10,6 +10,18 @@
             <ul>
                 <li v-for="(n, index) in 25">
                     El número es {{ n }}, y el índice es {{ index }}
+                    <br/>
+                    Su suma sería {{ n }} + {{ index }}, con resultado {{ n + index }}
+                    <br/>
+                    Su multiplicación sería {{ n }} * {{ index }}, con resultado {{ n * index }}
+                    <br/>
+                    Su divisón sería {{ n }} / {{ index }}, con resultado {{ n / index }}
+                    <br/>
+                    La parte entera de la división es {{ Math.floor(n / index) }}
+                    <br/>
+                    y el resto de la división entera es {{ n % index }}
+                    <br/>
+                    y está mal, así que a revisar esto a ver por qué no funciona como debe
                 </li>
             </ul>
         </div>
