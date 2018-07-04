@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 22</title>
+    </head>
+    <body>
+        <div id="app">
+            <div v-show="isNinja">It's a Ninja !!!</div>
+            <div v-show="!isNinja">It's just a peasant</div>
+            <button v-on:click="flipNinja">Flip Ninja</button>
+            <button v-on:click="isNinja = !isNinja">Flip ninja (not via methods)</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    isNinja: true
+                },
+                methods: {
+                    flipNinja: function() {
+                        this.isNinja = !this.isNinja;
+                    }
+                },
+                computed: {
+                    
+                }
+            });
+        </script>
+    </body>
+</html>

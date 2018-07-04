@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 14</title>
+    </head>
+    <body>
+        <div id="app">
+            <h3>Two-way binding</h3>
+            <input type="text" v-model="propOne" />
+            <b>Value: {{ propOne }}</b>
+            <br/>
+            <button v-on:click="changePropValue">Change the value</button>
+            <button v-on:click="showPropValue">Show the actual value</button>
+            <hr/>
+            <!-- IMPORTANTE: Una vez uses v-model, se ignora el valor de la prop value de la caja de texto -->
+            <h3>Value property is ignored</h3>
+            <input type="text" id="SecondTextbox" v-model="propTwo" value="Riders on the storm" />
+            <b>Value: {{ propTwo }}</b>
+            <br/>
+            <button v-on:click="showSecondValue">Show second value</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    propOne: 'This is the first property',
+                    propTwo: 'Second property value'
+                },
+                methods: {
+                    changePropValue: function() {
+                        this.propOne = 'Changed via button';
+                    },
+                    showPropValue: function() {
+                        let message = 'The value of the property is <b>' + this.propOne + '</b>';
+                        toastr.info(message)
+                    },
+                    showSecondValue: function() {
+                        console.log(this.propTwo);
+                        console.log(document.getElementById('SecondTextbox').value);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -15,6 +15,14 @@
             no v-bind como para otros tags. Averiguar por qué esto es así -->
             <input type="text" v-model:value="propertyTwo" placeholder="This is binded to property two" />
             <span><b>Output (second var): {{ propertyTwo }}</b></span>
+            <hr/>
+            <h4>This form will not submit</h4>
+            <form v-on:submit="handleFormSubmit" method="GET" action="loquesea.php">
+                <input type="text" name="propOne" id="propOne" placeholder="First value..." />
+                <input type="text" name="propTwo" id="propTwo" placeholder="Second value..." />
+                <input type="text" name="thirdProp" id="thirdProp" placeholder="Third value..." />
+                <input type="submit" value="It will not submit" />
+            </form>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -33,6 +41,19 @@
                     },
                     handleSecondInput: function(event) {
                         this.propertyOne = event.srcElement.value;
+                    },
+                    handleFormSubmit: function(event) {
+                        event.preventDefault();
+                        let finalData = {};
+                        // console.log(event.srcElement);
+                        for(let i = 0; i < event.srcElement.length; i++) {
+                            // console.log(event.srcElement[i]);
+                            if(event.srcElement[i].name !== '') {
+                                finalData[event.srcElement[i].name] = event.srcElement[i].value;
+                            }
+                            
+                        }
+                        console.log(finalData);
                     }
                 }
             });

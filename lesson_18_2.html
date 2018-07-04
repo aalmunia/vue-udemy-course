@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 14</title>
+    </head>
+    <body>
+        <div id="app">
+            <h3>v-bind part 2</h3>
+            <input type="text" v-model.number="age" placeholder="Age" />
+            <!-- Observa el comportamiento de esta caja de texto una vez empiezas a insertar números -->
+            <input type="text" v-model.number="name" placeholder="Name" v-on:keyup="handleKeyUp" />
+            <br/>
+            <b>Age: {{ age }}</b>
+            <b>Name: {{ name }}</b>
+            <div v-for="(who, index) in family" v-bind:key="index">               
+                <input type="text" v-model.trim="who.relation" />
+                <input type="text" v-model.number="who.age" />
+                <input type="text" v-model.trim="who.address" />
+                <input type="text" v-model.trim="who.name" />
+                <p>
+                    My {{ who.relation }} is called {{ who.name }}, aged {{ who.age }} and lives in {{ who.address }}
+                </p>
+                <p>
+                    Relation Type: {{ typeof who.relation }}                    
+                </p>
+                <p>
+                    Name type: {{ typeof who.name }}
+                </p>
+                <p>
+                    Age type: {{ typeof who.age }}
+                </p>
+                <p>
+                    Address type: {{ typeof who.address }}
+                </p>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    name: 'Alejandro Almunia Herranz',
+                    address: 'C/ Repelón 2 4º derecha',                    
+                    age: 39,
+                    family: [
+                        { name: 'Guiomar Almunia Herranz', age: 33, address: 'Herrera Oria', relation: 'sister' },
+                        { name: 'Tengri el gordito', age: 3, address: 'My own house', relation: 'little bugger' }                        
+                    ]
+                },
+                methods: {
+                    handleKeyUp: function(event) {
+                        console.log(event.srcElement.value);
+                    }
+                }
+            });  
+        </script>
+    </body>
+</html>

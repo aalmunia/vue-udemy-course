@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <title>UDEMY Vue Course - Lesson 24</title>
+    </head>
+    <body>
+        <div id="app">
+            <h4>Arrays and iterations</h4>
+            <!-- Iterating list elements -->
+            <h5>Unordered list</h5>
+            <ul>
+                <li v-for="(movie, index) in movies">{{ movie }}</li>
+            </ul>
+            <br/>
+            <!-- Creating table (known fields∫) -->
+            <h5>Table for known data structure</h5>
+            <table border="1">
+                <thead>
+                    <td>Name</td>
+                    <td>Surname</td>
+                    <td>Age</td>
+                </thead>
+                <tbody>
+                    <tr v-for="(employee, index) in employees">
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.surname }}</td>
+                        <td>{{ employee.age }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <!-- Create table (inferred fields) -->
+            <h5>Table created via inference of data</h5>
+            <table border="1">
+                <thead>
+                    <td v-for="(keyName, index) in Object.keys(enterprises[0])">{{ keyName }}</td>
+                </thead>
+                <tbody>
+                    <tr v-for="(business, index) in enterprises">
+                        <td v-for="(objKey, index) in business">
+                            {{ objKey }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    movies: ['The Matrix', 'The Matrix Reloaded', 'The Matrix Revolution'],
+                    employees: [
+                        { name: 'Alejandro', surname: 'Almunia Herranz', age: 39 },
+                        { name: 'Guiomar', surname: 'Almunia Herranz', age: 33 },
+                        { name: 'Irene', surname: 'Herranz Gil', age: 52 },
+                        { name: 'Ramon', surname: 'Aragonés Arroyo', age: 55 } 
+                    ],
+                    enterprises: [
+                        { name: 'Bank', type: 'Money', country: 'Spain' },
+                        { name: 'Cornfield', type: 'Food', country: 'USA' },
+                        { name: 'Sushi', type: 'Food', country: 'Japan' }
+                    ]
+                },
+                methods: {
+                    
+                },
+                computed: {
+                                        
+                }
+            });
+        </script>
+    </body>
+</html>
