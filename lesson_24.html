@@ -44,6 +44,20 @@
                     </tr>
                 </tbody>
             </table>
+            <br/>
+            <h5>Iterating object properties</h5>
+            <ul>
+                <li v-for="(value, propertyName) in testObject">
+                    <b>{{ propertyName }}</b>: {{ value }}
+                </li>
+            </ul>
+            <br/>
+            <h5>Iterating object properties with indexation</h5>
+            <ul>
+                <li v-for="(value, propertyName, index) in testObject">
+                    La propiedad <b>{{ propertyName }}</b> es la número <b>{{ index }}</b> del objeto, y su valor es <b>{{ value }}</b>
+                </li>
+            </ul>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -63,7 +77,13 @@
                         { name: 'Bank', type: 'Money', country: 'Spain' },
                         { name: 'Cornfield', type: 'Food', country: 'USA' },
                         { name: 'Sushi', type: 'Food', country: 'Japan' }
-                    ]
+                    ],
+                    testObject: {
+                        field1: 'This is a string',
+                        field2: 'This is also a string',
+                        field3: 45,
+                        field4: 56.87
+                    }
                 },
                 methods: {
                     
